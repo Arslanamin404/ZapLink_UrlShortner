@@ -1,0 +1,52 @@
+<nav
+  class="block w-full px-4 py-2 text-white bg-white shadow-md rounded-md lg:px-8 lg:py-3"
+>
+  <div
+    class="container flex flex-wrap items-center justify-between mx-auto text-slate-800"
+  >
+    <a
+      href="/"
+      class="mr-4 block cursor-pointer py-1.5 text-slate-800 font-semibold text-2xl"
+    >
+      ZapLink
+    </a>
+    <div class="block">
+      <ul class="flex m-0 flex-row items-center gap-8">
+        <li
+          class="flex items-center py-1 px-2 text-base gap-x-2 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/" class="font-bold">HOME </a>
+        </li>
+        <% if (locals.user) { %>
+
+        <li
+          class="flex items-center py-1 px-2 text-base gap-x-2 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/url" class="font-bold">VIEW ALL URLs </a>
+        </li>
+        <li
+          class="flex items-center py-1 px-2 text-base gap-x-2 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/user/profile" class="font-bold">PROFILE </a>
+        </li>
+        <li
+          class="flex items-center py-1 px-2 text-base gap-x-2 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/user/logout" class="font-bold"> LOG OUT </a>
+        </li>
+        <% } else { %>
+        <li
+          class="flex items-center py-1 px-2 text-base gap-x-2 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/login" class="font-bold"> LOG IN </a>
+        </li>
+        <li
+          class="flex items-center py-1.5 px-4 rounded-full text-base gap-x-2 bg-yellow-300 hover:bg-yellow-400 text-slate-700 hover:text-slate-800 hover:underline duration-300"
+        >
+          <a href="/signup" class="font-bold"> SIGN UP </a>
+        </li>
+        <%}%>
+      </ul>
+    </div>
+  </div>
+</nav>

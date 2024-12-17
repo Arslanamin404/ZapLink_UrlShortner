@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Profile - ZapLink Url Shortener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-300 flex flex-col items-center h-screen">
+    <%- include("partials/navbar") %>
+    <!-- Profile Card -->
+    <div class="h-[80%] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <% if (locals.user) { %>
+
+      <div
+        class="bg-white shadow-lg rounded-lg overflow-hidden max-w-md w-full"
+      >
+        <!-- Profile Image -->
+        <div class="h-48 bg-gray-800 flex items-center justify-center">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Profile"
+            class="w-32 h-32 object-cover rounded-full border-4 border-white"
+          />
+        </div>
+
+        <!-- Profile Content -->
+        <div class="text-center mt-4 mb-8 px-8">
+          <h2 class="text-2xl font-bold text-gray-800"><%= user.fullName %></h2>
+          <p class="text-gray-600 text-sm mt-1">
+            Email:
+            <span class="font-bold text-teal-600"><%= user.email %></span>
+          </p>
+          <p class="text-gray-600 text-sm mt-1">
+            Total Links Generated:
+            <span class="font-bold text-teal-600"><%= totalLinks %></span>
+          </p>
+          <p class="text-gray-600 text-sm mt-1">
+            Total Clicks Across All Links:
+            <span class="font-bold text-teal-600"><%= totalClicks %></span>
+          </p>
+        </div>
+        <div class="flex items-center justify-center mb-6 mx-6">
+          <a
+            href="mailto:example@example.com"
+            class="w-full bg-blue-600 text-white text-center py-2 rounded-md hover:bg-blue-700 transition duration-300 font-semibold tracking-wider"
+          >
+            Edit Profile
+          </a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <%- include("partials/footer") %>
+  </body>
+</html>

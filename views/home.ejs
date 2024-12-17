@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZapLink - URL Shortener -- Arsalan Rather</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-300 flex flex-col items-center h-screen">
+    <%- include("partials/navbar") %>
+
+    <main>
+      <h2 class="text-center my-5 text-xl md:text-3xl"> <strong class="text-teal-700">ZapLink</strong> - URL Shortener</h2>
+      <div class="bg-white rounded-lg p-6 shadow-lg flex flex-col items-center mt-10">
+        <% if (locals.shortID) { %>
+        <p class="text-lg font-medium mb-4">
+          Generated Short URL is:
+          <a
+            href="http://localhost:8000/url/<%= shortID %>"
+            target="_blank"
+            class="text-blue-500 underline hover:text-blue-700"
+            >http://localhost:8000/url/<%= shortID %></a
+          >
+        </p>
+        <% } %>
+        <form
+          class="flex flex-row justify-center gap-4 items-center w-full"
+          method="post"
+          action="/url"
+        >
+          <input
+            type="text"
+            class="border border-gray-300 rounded-lg px-4 py-2 w-full max-w-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            name="url"
+            placeholder="Enter your original URL"
+            required
+          />
+          <button
+            class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg hover:bg-blue-600 text-lg"
+            type="submit"
+          >
+            Generate
+          </button>
+        </form>
+      </div>
+
+      <% if (locals.allUrls) { %>
+      <div class="mt-8 w-full px-4 overflow-auto">
+        <h1 class="text-2xl font-mono text-center mb-4">All URLs</h1>
+        <table class="border border-slate-900 w-full table-auto text-left">
+          <thead class="bg-slate-950 text-gray-200">
+            <tr>
+              <th class="border border-gray-300 px-4 py-2">S. No</th>
+              <th class="border border-gray-300 px-4 py-2">Short ID</th>
+              <th class="border border-gray-300 px-4 py-2">Redirect URL</th>
+              <th class="border border-gray-300 px-4 py-2">Click Count</th>
+            </tr>
+          </thead>
+          <tbody class="bg-gray-600 text-gray-200">
+            <% allUrls.forEach((url, index) => { %>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
+              <td class="border border-gray-300 px-4 py-2">
+                <a
+                  href="http://localhost:8000/url/<%= url.shortID %>"
+                  target="_blank"
+                  class="text-orange-400 underline hover:text-orange-500"
+                  ><%= url.shortID %></a
+                >
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                <%= url.redirectURL %>
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                <%= url.clickCount %>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
+    </main>
+    <%- include("partials/footer") %>
+  </body>
+</html>

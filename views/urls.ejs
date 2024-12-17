@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Urls - ZapLink - URL Shortener -- Arsalan Rather</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-300 flex flex-col items-center h-screen">
+    <%- include("partials/navbar") %>
+
+    <section>
+      <% if (locals.allUrls) { %>
+      <div class="mt-8 w-full px-4 overflow-auto">
+        <h1 class="text-2xl font-mono text-center mb-4">All URLs</h1>
+        <table class="border border-slate-900 w-full table-auto text-left">
+          <thead class="bg-slate-950 text-gray-200">
+            <tr>
+              <th class="border border-gray-300 px-4 py-2">S. No</th>
+              <th class="border border-gray-300 px-4 py-2">Short ID</th>
+              <th class="border border-gray-300 px-4 py-2">Redirect URL</th>
+              <th class="border border-gray-300 px-4 py-2">Click Count</th>
+            </tr>
+          </thead>
+          <tbody class="bg-gray-600 text-gray-200">
+            <% allUrls.forEach((url, index) => { %>
+            <tr>
+              <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
+              <td class="border border-gray-300 px-4 py-2">
+                <a
+                  href="http://localhost:8000/url/<%= url.shortID %>"
+                  target="_blank"
+                  class="text-orange-400 underline hover:text-orange-500"
+                  ><%= url.shortID %></a
+                >
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                <%= url.redirectURL %>
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                <%= url.clickCount %>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <% } %>
+    </section>
+    <%- include("partials/footer") %>
+  </body>
+</html>
