@@ -18,7 +18,7 @@ import { handleUserProfile } from "./controllers/profile.controller.js";
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const MONGO_DB_URL = process.env.MONGO_DB_URL;
+const MONGO_DB_URL = process.env.MONGO_DB_ATLAS_URL;
 const PORT = process.env.PORT;
 
 connectMongoDB(MONGO_DB_URL);
