@@ -14,16 +14,20 @@
     <%- include("partials/navbar") %>
 
     <main>
-      <h2 class="text-center my-5 text-xl md:text-3xl"> <strong class="text-teal-700">ZapLink</strong> - URL Shortener</h2>
-      <div class="bg-white rounded-lg p-6 shadow-lg flex flex-col items-center mt-10">
+      <h2 class="text-center my-5 text-xl md:text-3xl">
+        <strong class="text-teal-700">ZapLink</strong> - URL Shortener
+      </h2>
+      <div
+        class="bg-white rounded-lg p-6 shadow-lg flex flex-col items-center mt-10"
+      >
         <% if (locals.shortID) { %>
         <p class="text-lg font-medium mb-4">
           Generated Short URL is:
           <a
-            href="http://localhost:8000/url/<%= shortID %>"
+            href="https://zaplink-urlshortner.onrender.com/url<%= shortID %>"
             target="_blank"
             class="text-blue-500 underline hover:text-blue-700"
-            >http://localhost:8000/url/<%= shortID %></a
+            >https://zaplink-urlshortner.onrender.com/url<%= shortID %></a
           >
         </p>
         <% } %>
@@ -47,43 +51,6 @@
           </button>
         </form>
       </div>
-
-      <% if (locals.allUrls) { %>
-      <div class="mt-8 w-full px-4 overflow-auto">
-        <h1 class="text-2xl font-mono text-center mb-4">All URLs</h1>
-        <table class="border border-slate-900 w-full table-auto text-left">
-          <thead class="bg-slate-950 text-gray-200">
-            <tr>
-              <th class="border border-gray-300 px-4 py-2">S. No</th>
-              <th class="border border-gray-300 px-4 py-2">Short ID</th>
-              <th class="border border-gray-300 px-4 py-2">Redirect URL</th>
-              <th class="border border-gray-300 px-4 py-2">Click Count</th>
-            </tr>
-          </thead>
-          <tbody class="bg-gray-600 text-gray-200">
-            <% allUrls.forEach((url, index) => { %>
-            <tr>
-              <td class="border border-gray-300 px-4 py-2"><%= index + 1 %></td>
-              <td class="border border-gray-300 px-4 py-2">
-                <a
-                  href="http://localhost:8000/url/<%= url.shortID %>"
-                  target="_blank"
-                  class="text-orange-400 underline hover:text-orange-500"
-                  ><%= url.shortID %></a
-                >
-              </td>
-              <td class="border border-gray-300 px-4 py-2">
-                <%= url.redirectURL %>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">
-                <%= url.clickCount %>
-              </td>
-            </tr>
-            <% }) %>
-          </tbody>
-        </table>
-      </div>
-      <% } %>
     </main>
     <%- include("partials/footer") %>
   </body>
