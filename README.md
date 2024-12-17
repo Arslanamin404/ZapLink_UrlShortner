@@ -1,5 +1,7 @@
 # URL Shortener API Documentation
 
+## [Live Preview ZapLink](https://zaplink-urlshortner.onrender.com)
+
 ## Overview
 
 This API provides functionality to shorten URLs, redirect users to the original URL, and track analytics for the shortened URLs. The core features include:
